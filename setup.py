@@ -3,22 +3,37 @@
 from setuptools import setup, Extension
 from Cython.Build import cythonize
 
+cython_directives = {
+    "boundscheck": False,
+    "cdivision": True,
+    "wraparound": False,
+    "language_level": 3,
+}
+
+# Options.default_options['language_level'] = '3'
+
+
+# Options.docstrings = False
+# Options.language_level = 2
+
+
 
 extensions = [
     Extension(
-        name="modules.loop",
+        "modules.loop",
         sources=["modules/loop.py"],
+        language="c",
     ),
     Extension(
-        name="modules.time_counter",
+        "modules.time_counter",
         sources=["modules/time_counter.py"],
+        language="c",
     ),
 ]
 
-
 setup(
     name="modules",
-    ext_modules=cythonize(extensions),
-    compiler_directives={"language_level": "3"},
-    annotate=True,
+    ext_modules=cythonize(
+        extensions,
+    ),
 )

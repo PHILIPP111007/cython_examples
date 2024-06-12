@@ -129,3 +129,5 @@ dmypy.json
 
 /static
 *.c
+*.cpp
+.ruff_cache
